@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %} sales {% endblock %}
+
+{% block content %}
+
+
+  <!-- Sales Form -->
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">Sales Page</h2>
+
+    <form action="/make_sale" method="post">
+      <div class="mb-3">
+        <label for="product" class="form-label">Select Product</label>
+        <select name="pid" id="product" class="form-select" required>
+          <option value="">Select Product</option>
+          {% for product in data1 %}
+          <option value="{{ product[0] }}">{{ product[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input type="number" name="quantity" id="quantity" class="form-control" min="1" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Make Sale</button>
+    </form>
+
+    <!-- Sales Records -->
+    <div class="mt-5">
+      <h4>Sales Records</h4>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Sale ID</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for sale in data %}
+          <tr>
+            <td>{{ sale[0] }}</td>
+            <td>{{ sale[1] }}</td>
+            <td>{{ sale[2] }}</td>
+            <td>{{ sale[3] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+ 
+
+</html>
+{% endblock %}
